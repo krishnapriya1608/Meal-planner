@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Suggestions</title>
+    <style>
+        .selected {
+            border: 2px solid green;
+        }
+        .meal-card {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .meal-image {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Your Food Type</h1>
+    <div>
+        <img class="food-image" data-name="Non-Veg" src="https://example.com/non_veg.jpg" onclick="selectFood(this)">
+        <img class="food-image" data-name="Burgers" src="https://example.com/burgers.jpg" onclick="selectFood(this)">
+        <img class="food-image" data-name="Veg" src="https://example.com/veg.jpg" onclick="selectFood(this)">
+        <img class="food-image" data-name="Vegan" src="https://example.com/vegan.jpg" onclick="selectFood(this)">
+        <img class="food-image" data-name="Keto" src="https://example.com/keto.jpg" onclick="selectFood(this)">
+    </div>
+
+    <div>
+        <label for="mealQuantity">Number of Meals:</label>
+        <input type="number" id="mealQuantity" min="1">
+        
+        <label for="cal_input">Calories per Meal:</label>
+        <input type="number" id="cal_input" disabled>
+
+        <button id="addFoodButton" onclick="addToList()" disabled>Add to List</button>
+        <button onclick="clearMealPlan()">Clear</button>
+    </div>
+
+    <div id="output" style="display: none;">
+        <h2>Suggested Meals:</h2>
+        <div id="suggestedMeals"></div>
+    </div>
+
+    <script>
+        let selectedFood = null;
+        const foodList = [];
+
+        const mealSuggestions = {
+            "Non-Veg": {
+                meals: {
+                    breakfast: [
+                        { name: "Bacon and Eggs", image: "https://example.com/bacon_and_eggs.jpg" },
+                        { name: "Breakfast Burrito", image: "https://example.com/breakfast_burrito.jpg" }
+                    ],
+                    lunch: [
+                        { name: "Chicken Salad", image: "https://example.com/chicken_salad.jpg" },
+                        { name: "Turkey Sandwich", image: "https://example.com/turkey_sandwich.jpg" }
+                    ],
+                    dinner: [
+                        { name: "Steak and Potatoes", image: "https://example.com/steak_and_potatoes.jpg" },
+                        { name: "Grilled Salmon", image: "https://example.com/grilled_salmon.jpg" }
+                    ],
+                }
+            },
+            "Burgers": {
+                meals: {
+                    breakfast: [
+                        { name: "Breakfast Burger", image: "https://example.com/breakfast_burger.jpg" }
+                    ],
+                    lunch: [
+                        { name: "Cheeseburger", image: "https://example.com/cheeseburger.jpg" },
+                        { name: "Veggie Burger", image: "https://example.com/veggie_burger.jpg" }
+                    ],
+                    dinner: [
+                        { name: "Bacon Burger", image: "https://example.com/bacon_burger.jpg" }
+                    ],
+                }
+            },
+            "Veg": {
+                meals: {
+                    breakfast: [
+                        { name: "Avocado Toast", image: "https://example.com/avocado_toast.jpg" },
+                        { name: "Fruit Smoothie", image: "https://example.com/fruit_smoothie.jpg" }
+                    ],
+                    lunch: [
+                        { name: "Vegetable Stir-Fry", image: "https://example.com/vegetable_stirfry.jpg" },
+                        { name: "Quinoa Salad", image: "https://example.com/quinoa_salad.jpg" }
+                    ],
+                    dinner: [
+                        { name: "Vegetable Curry", image: "https://example.com/vegetable_curry.jpg" },
+                        { name: "Pasta Primavera", image: "https://example.com/pasta_primavera.jpg" }
+                    ],
+                }
+            },
+            "Vegan": {
+                meals: {
+                    breakfast: [
+                        { name: "Vegan Pancakes", image: "https://example.com/vegan_pancakes.jpg" },
+                        { name: "Chia Seed Pudding", image: "https://example.com/chia_seed_pudding.jpg" }
+                    ],
+                    lunch: [
+                        { name: "Vegan Burrito", image: "https://example.com/vegan_burrito.jpg" },
+                        { name: "Lentil Salad", image: "https://example.com/lentil_salad.jpg" }
+                    ],
+                    dinner: [
+                        { name: "Vegan Stir-Fry", image: "https://example.com/vegan_stirfry.jpg" },
+                        { name: "Zucchini Noodles", image: "https://example.com/zucchini_noodles.jpg" }
+                    ],
+                }
+            },
+            "Keto": {
+                meals: {
+                    breakfast: [
+                        { name: "Keto Avocado Smoothie", image: "https://example.com/keto_avocado_smoothie.jpg" },
+                        { name: "Egg Muffins", image: "https://example.com/egg_muffins.jpg" }
+                    ],
+                    lunch: [
+                        { name: "Keto Chicken Salad", image: "https://example.com/keto_chicken_salad.jpg" },
+                        { name: "Zucchini Noodles with Pesto", image: "https://example.com/zucchini_noodles_pesto.jpg" }
+                    ],
+                    dinner: [
+                        { name: "Keto Beef Stir-Fry", image: "https://example.com/keto_beef_stirfry.jpg" },
+                        { name: "Baked Salmon with Asparagus", image: "https://example.com/baked_salmon_asparagus.jpg" }
+                    ],
+                }
+            }
+        };
+
+        function selectFood(image) {
+            const foodImages = document.querySelectorAll('.food-image');
+            if (selectedFood) {
+                selectedFood.classList.remove('selected');
+            }
+            selectedFood = image;
+            selectedFood.classList.add('selected');
+
+            // Enable calorie input
+            document.getElementById('cal_input').disabled = false;
+            displayMealSuggestions(selectedFood.getAttribute('data-name'));
+            checkInputs();
+        }
+
+        function addToList() {
+            const mealQuantity = parseInt(document.getElementById('mealQuantity').value);
+            const foodCalories = parseInt(document.getElementById('cal_input').value);
+
+            if (!selectedFood) {
+                alert("Please select a food item.");
+                return;
+            }
+            if (!mealQuantity || mealQuantity <= 0) {
+                alert("Please enter a valid number of meals.");
+                return;
+            }
+            if (!foodCalories || foodCalories <= 0) {
+                alert("Please enter a valid calorie amount.");
+                return;
+            }
+
+            const foodName = selectedFood.getAttribute('data-name');
+
+            // Clear previous meal suggestions
+            foodList.length = 0;
+            const mealPlanDiv = document.getElementById('suggestedMeals');
+            mealPlanDiv.innerHTML = '';
+
+            // Get random meal suggestions based on the selected food category
+            const foodDetails = mealSuggestions[foodName] || {};
+            const meals = foodDetails.meals || {};
+
+            // Add meals to the list and create meal cards
+            for (let mealType in meals) {
+                for (let i = 0; i < mealQuantity; i++) {
+                    const randomMeal = meals[mealType][Math.floor(Math.random() * meals[mealType].length)];
+                    const foodItem = { name: randomMeal.name, calories: foodCalories };
+                    foodList.push(foodItem);
+                    createMealCard(foodItem); // Create meal card for each meal
+                }
+            }
+
+            // Display the output section
+            document.getElementById('output').style.display = 'block';
+        }
+
+        function createMealCard(meal) {
+            const mealPlanDiv = document.getElementById('suggestedMeals');
+            mealPlanDiv.innerHTML += `
+                <div class="meal-card">
+                    <h6>${meal.name}</h6>
+                    <p>Calories: ${meal.calories}</p>
+                </div>
+            `;
+        }
+
+        function displayMealSuggestions(foodName) {
+            const suggestedMealsDiv = document.getElementById('suggestedMeals');
+            suggestedMealsDiv.innerHTML = '';
+
+            const foodDetails = mealSuggestions[foodName] || {};
+            const meals = foodDetails.meals || {};
+
+            for (const mealType in meals) {
+                const mealsHtml = meals[mealType].map(meal => `
+                    <div class="meal-card">
+                        <h6>${meal.name}</h6>
+                        <img class="meal-image" src="${meal.image}" alt="${meal.name}">
+                    </div>
+                `).join('');
+                
+                suggestedMealsDiv.innerHTML += `<h5>${mealType.charAt(0).toUpperCase() + mealType.slice(1)}</h5>${mealsHtml}`;
+            }
+        }
+
+        function clearMealPlan() {
+            foodList.length = 0;
+            document.getElementById('suggestedMeals').innerHTML = '';
+            document.getElementById('output').style.display = 'none';
+            document.getElementById('cal_input').disabled = true;
+            const foodImages = document.querySelectorAll('.food-image');
+            foodImages.forEach(img => img.classList.remove('selected'));
+            selectedFood = null;
+            document.getElementById('mealQuantity').value = '';
+            document.getElementById('cal_input').value = '';
+        }
+
+        function checkInputs() {
+            const mealQuantity = parseInt(document.getElementById('mealQuantity').value);
+            const foodCalories = parseInt(document.getElementById('cal_input').value);
+            const button = document.getElementById('addFoodButton');
+
+            button.disabled = !(selectedFood && mealQuantity > 0 && foodCalories > 0);
+        }
+
+        document.getElementById('mealQuantity').addEventListener('input', checkInputs);
+        document.getElementById('cal_input').addEventListener('input', checkInputs);
+    </script>
+</body>
+</html>

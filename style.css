@@ -1,0 +1,343 @@
+ header{
+    background: url(./Screenshot\ 2024-10-15\ 140418.png);
+}
+.container-fluid a{
+    color:orange;
+    position: relative;
+    right:7%;
+     font-family: "Qwitcher Grypen", cursive; 
+}
+.navbar-brand{
+        font-family: "Qwitcher Grypen", cursive;
+        font-size: 40px;
+        font-weight: 700;
+}
+.nav{
+    margin-right: 310px;
+}
+.nav-item a{
+    color:orange;
+    font-family: "Roboto Slab", serif;
+    
+}
+.diet-types button{
+  font-family: "Pirata One", system-ui;
+  font-weight: 400;
+}
+.btn{
+    position: relative;
+    left:40%;
+    background-color: orange;
+    border-color: transparent;
+    
+} 
+#meal-plan h2{
+    font-family: "Roboto Slab", serif;
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 40px;
+}
+.sections{
+    text-align: center;
+    margin-top: 40px;
+     background-image: url(https://i.pinimg.com/736x/63/a7/ff/63a7ff14a44d210c79f71085f0e11851.jpg);
+   
+    height:200px;
+    background-repeat: no-repeat;
+   background-position: 0cqi;
+    background-size: contain;
+}
+.container{
+  background-image: url(https://files.oaiusercontent.com/file-j8H6QvTh7FSuhd1CrhKriotr?se=2024-10-21T10%3A19%3A28Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D870311ba-8dff-4615-a071-93118f940818.webp&sig=fUTvSDQX2VZv9j2FjJiLQfhUX%2BO3mSxN7uZUTOEMPO8%3D);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sections p{
+   margin-top: 50px;
+   padding: 20px;
+   font-family: "Akaya Kanadaka", system-ui;
+  
+
+}
+.sections h1{
+    font-family: "Spicy Rice", serif;
+    font-weight: 200;
+    color: orange;
+}
+.p1{
+    font-weight: bold;
+    position: relative;
+    bottom: 70px;
+}
+.p2{
+    font-size: 30px;
+}
+.card-body{
+    display: flex;
+    margin-left: 70px;
+   
+    
+  
+}
+.ids{
+  margin-left: 10px;
+  margin-bottom: 3px;
+}
+#meals {
+  border-color: whitesmoke;
+  border-color: black;
+  border-radius: 31px;
+}
+.card{
+    margin: auto;
+}
+.calories input{
+    margin-left: 210px;
+    margin-bottom: 70px;
+}
+.calorie-input label{
+    position: relative;
+    bottom: 2px;
+    font-family: "Bungee Tint", sans-serif;
+   position: relative;
+    color:#ff7043;
+    margin-right: 30px;
+    font-size: 13px;
+}
+.meal-card h3{
+  font-size: 20px;
+  font-family: "Akaya Kanadaka", system-ui;
+}
+.calorie-input input{
+  border-radius: 31px;
+  border-color: beige;
+  position: relative;
+  right:20px;
+}
+.button{
+    position: relative;
+   left:14%;
+   bottom:10%;
+
+}
+body {
+    /* font-family: Arial, sans-serif; */
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 150px;
+  }
+  
+  .meal-options {
+    text-align: center;
+  }
+  .meal-options h1{
+    font-family: "Dancing Script", cursive;
+    font-weight: bolder;
+    font-size: 30px;
+
+  }
+  .diet-types {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .diet-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .diet-btn.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .calorie-input {
+    margin: 10px 0;
+  }
+  
+  
+  #generate-btn {
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 50px;
+  }
+  #clear-btn{
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .meal-card {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .meal-card h3 {
+    margin: 0 0 10px;
+  }
+  
+  .content {
+    margin-left: 20px;
+  }
+  #breakfast h3{
+    font-family: "Shadows Into Light", cursive;
+    font-size: 25px;
+  }
+ 
+#lunch h3{
+    font-family: "Shadows Into Light", cursive;
+    font-size: 25px;
+}
+#dinner h3{
+    font-family: "Shadows Into Light", cursive;
+    font-size: 25px;
+}
+#snack h3{
+    font-family: "Shadows Into Light", cursive;
+    font-size: 25px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 20px;
+  }
+  #meal-plan h2{
+    font-size: 20px;
+    font-family: "Bungee Tint", sans-serif;
+    font-weight: 400;
+
+  }
+
+  /* Tooltip CSS */
+.recipe-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position the tooltip just below the item */
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: max-content;
+  max-width: 200px; /* Optional: Limit width */
+  white-space: normal; /* Ensure long text wraps */
+}
+
+/* Make tooltip visible */
+.recipe-tooltip.visible {
+  display: block;
+}
+
+/* Adjust meal container to position tooltip correctly */
+.meal-container {
+  position: relative; /* Ensure the tooltip is positioned relative to the container */
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* Optional: Ensure meal name has better spacing */
+.meal-name {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.diet-btn {
+  margin: 10px;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border: 1px solid #8c1d1d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+}
+
+.diet-btn.active {
+  background-color: #ffcc99;
+  transform: scale(1.1);
+  border-color: #be453c;
+}
+
+.diet-btn:hover {
+  background-color: #ffddaa;
+}
+
+.recipe-tooltip {
+    display: none; /* Initially hidden */
+    position: absolute; /* Or fixed depending on your layout */
+    background:linear-gradient(grey,white);
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    z-index: 1000; /* Make sure it's above other elements */
+}
+
+.recipe-tooltip.visible {
+    display: block; /* Show on click */
+}
+
+
+.recipe-tooltip {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.meal-container:hover .recipe-tooltip {
+  display: block; /* Show on hover */
+}
+.containerr{
+  width:1350px;
+  height:400px;
+ background-image: url(./Screenshot\ 2024-10-15\ 140418.png);
+ 
+ top:270px;
+}
+.containerr h1{
+  color:#c05e13;
+  font-family: "Shadows Into Light", cursive;
+
+}
+.cols p{
+  margin-top: 80px;
+  color: #e0e0e0;
+}
+.col img{
+  margin-top: 50px;
+}
+.col p{
+  margin-top: 70px;
+  color: #e0e0e0;
+}
+footer{
+  margin: auto;
+  
+}
